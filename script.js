@@ -5,6 +5,7 @@ const formData = document.querySelector("#form");
 const compNameData = document.querySelector("#compName");
 const catData = document.querySelector("#cat");
 const priceData = document.querySelector("#price");
+const buildListData = document.querySelector("#buildList");
 
 // Handle form submisiion
 formData.addEventListener("submit", function (event) {
@@ -13,8 +14,8 @@ formData.addEventListener("submit", function (event) {
     const category = catData.value.trim();
     const price = priceData.value;
 
-    console.log(componentName);
-    console.log(category);
-    console.log(price);
+    const listItem = document.createElement("li");
+    listItem.textContent = `${componentName} - ${category} - $${price}`;
+    buildListData.append(listItem);
 });
 
