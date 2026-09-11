@@ -6,6 +6,7 @@ const compNameData = document.querySelector("#compName");
 const catData = document.querySelector("#cat");
 const priceData = document.querySelector("#price");
 const buildListData = document.querySelector("#buildList");
+const noCommentData = document.querySelector("#noComment")
 
 // Handle form submisiion
 formData.addEventListener("submit", function (event) {
@@ -14,8 +15,15 @@ formData.addEventListener("submit", function (event) {
     const category = catData.value.trim();
     const price = priceData.value;
 
+    if (componentName === "" || category === "" || price === "") {
+         alert("Field(s) cannot be left empty.");
+         return;
+    }
+
     const listItem = document.createElement("li");
     listItem.textContent = `${componentName} - ${category} - $${price}`;
     buildListData.append(listItem);
+    formData.reset();  // clears the boxes after components are added
+    noCommentData.textContent = "";
 });
 

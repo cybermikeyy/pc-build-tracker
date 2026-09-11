@@ -16,16 +16,16 @@
     <form id="form">
         <label for="compName">Component name:</label>
         <input type="text" id="compName" name="compName" placeholder="MSI Gaming X Trio 4070 Ti">
-        <label for="cat" >Category:</label>
+        <label for="cat">Category:</label>
         <input type="text" name="cat" id="cat" placeholder="GPU">
         <label for="price">Price:</label>
         <input type="number" name="price" id="price" placeholder="1100">
         <button id="addComponent" type="submit">Add component</button>
     </form>
-     
+
 
     <h2>Your Build</h2>
-    <p>No components added yet...</p>
+    <p id="noComment">No components added yet...</p>
     <ul id="buildList"></ul>
     <script src="script.js" defer></script>
     <!-- 'defer' is not necessary here since its at the very bottom of <body>, but is fine to leave here. -->
