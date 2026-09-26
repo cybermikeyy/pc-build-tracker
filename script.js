@@ -41,5 +41,15 @@ formData.addEventListener("submit", function (event) {
     buildListData.append(listItem);
     formData.reset();  // clears the boxes after components are added
     noCommentData.textContent = "";  // clears the 'No components added yet...' line when item is added to list
+
+    deleteButton.addEventListener("click", () => {
+        listItem.remove();
+        totalPrice -= price;
+        totalDisplayData.textContent = `Total: $${totalPrice.toFixed(2)}`;
+
+        if (buildListData.children.length <= 0) {
+            noCommentData.textContent = "No components added yet...";
+        }
+    });
 });
 
