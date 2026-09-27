@@ -12,12 +12,20 @@ const totalDisplayData = document.querySelector("#totalDisplay");
 // Track build total
 let totalPrice = 0;
 
+// Array holding other components
+const components = [];
+
 // Handle form submision
 formData.addEventListener("submit", function (event) {
     event.preventDefault();  // this line prevents the page from refreshing after submission
     const componentName = compNameData.value.trim();
     const category = catData.value.trim();
     const price = Number(priceData.value);
+
+    const component = {name: componentName,
+        category: category,
+        price: price,
+    };
 
     if (componentName === "" || category === "" || priceData.value === "") {
         alert("Field(s) cannot be left empty.");
@@ -36,6 +44,7 @@ formData.addEventListener("submit", function (event) {
     deleteButton.classList.add("delete-button");  // intentionally typed delete-button as opposed to deleteButton to match CSS naming conventions (kebab-case LOL)
     deleteButton.textContent = "Delete";
     listItem.textContent = `${componentName} - ${category} - $${price.toFixed(2)}`;
+    components.push(component);
     totalDisplayData.textContent = `Total: $${totalPrice.toFixed(2)}`;
     listItem.append(deleteButton);
     buildListData.append(listItem);
