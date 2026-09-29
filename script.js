@@ -22,11 +22,6 @@ formData.addEventListener("submit", function (event) {
     const category = catData.value.trim();
     const price = Number(priceData.value);
 
-    const component = {name: componentName,
-        category: category,
-        price: price,
-    };
-
     if (componentName === "" || category === "" || priceData.value === "") {
         alert("Field(s) cannot be left empty.");
         return;
@@ -39,12 +34,19 @@ formData.addEventListener("submit", function (event) {
 
     totalPrice += price;
 
+    const component = {
+        name: componentName,
+        category: category,
+        price: price,
+    };
+    components.push(component);
+    
     const listItem = document.createElement("li");
     const deleteButton = document.createElement("button");
     deleteButton.classList.add("delete-button");  // intentionally typed delete-button as opposed to deleteButton to match CSS naming conventions (kebab-case LOL)
     deleteButton.textContent = "Delete";
     listItem.textContent = `${componentName} - ${category} - $${price.toFixed(2)}`;
-    components.push(component);
+
     totalDisplayData.textContent = `Total: $${totalPrice.toFixed(2)}`;
     listItem.append(deleteButton);
     buildListData.append(listItem);
@@ -55,6 +57,12 @@ formData.addEventListener("submit", function (event) {
         listItem.remove();
         totalPrice -= price;
         totalDisplayData.textContent = `Total: $${totalPrice.toFixed(2)}`;
+        const componentIndex = components.indexOf(component);
+        if (componentIndex !== -1) {
+            components.splice(componentIndex, 1);
+            console.log(components);
+        }
+
 
         if (buildListData.children.length <= 0) {
             noCommentData.textContent = "No components added yet...";
